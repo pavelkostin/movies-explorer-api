@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
+const { allowedCors } = require('./utils/utils');
 /* const randomString = require('./utils/randomString'); */
 const rateLimit = require('./middlewares/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -28,6 +30,7 @@ app.use(helmet());
 
 // подключаем парсер данных
 app.use(express.json());
+app.use(cors(allowedCors));
 app.use(express.urlencoded({ extended: true }));
 
 // request Logger
