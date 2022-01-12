@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 const { isURL } = require('validator');
-const User = require('../models/users');
 
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
-    required: false,
+    required: true,
   },
   director: {
     type: String,
-    required: false,
+    required: true,
   },
-/*   duration: {
+  duration: {
     type: Number,
     required: true,
   },
@@ -43,10 +42,10 @@ const movieSchema = new mongoose.Schema({
     validate: {
       validator: (v) => isURL(v),
     },
-  },*/
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    /* ref: 'user', */
+    ref: 'user',
     required: true,
   },
   movieId: {
@@ -61,6 +60,6 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-})
+});
 
 module.exports = mongoose.model('movie', movieSchema);
