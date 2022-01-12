@@ -16,7 +16,7 @@ const port = 3000;
 /* console.log(randomString); */
 
 // подключаем монго
-mongoose.connect('mongodb://localhost:27017/trainig', {
+mongoose.connect('mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
 });
 
