@@ -74,16 +74,16 @@ function deleteMovie(req, res, next) {
     });
 }
 
-// удалить потом
-function deleteALlMovies(req, res, next) {
+// удалить
+/* function deleteALlMovies(req, res, next) {
   Movie.deleteMany({})
     .then((movie) => res.status(200).send({ data: movie }))
     .catch((err) => next(err));
-}
+} */
 
 module.exports = {
   getMovies,
   postMovie,
   deleteMovie,
-  deleteALlMovies,
+  /* deleteALlMovies, */
 };

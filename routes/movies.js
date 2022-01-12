@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const auth = require('../middlewares/auth');
+/* const auth = require('../middlewares/auth'); */
 const { getMovies } = require('../controllers/movies');
 const { postMovie } = require('../controllers/movies');
 const { deleteMovie } = require('../controllers/movies');
-const { deleteALlMovies } = require('../controllers/movies');
+/* const { deleteALlMovies } = require('../controllers/movies'); */
 const regExp = require('../regexp/regexp');
 
-router.post('/', auth, celebrate({
+router.post('/', celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().required(),
@@ -23,17 +23,17 @@ router.post('/', auth, celebrate({
   }),
 }), postMovie);
 router.get('/', getMovies);
-router.delete('/:movieId', auth, celebrate({
+router.delete('/:movieId', celebrate({
   params: Joi.object().keys({
     movieId: Joi.string().length(24).hex(),
   }),
 }), deleteMovie);
 
 // удалить потом
-router.delete('/', auth, celebrate({
+/* router.delete('/', auth, celebrate({
   params: Joi.object().keys({
     movieId: Joi.string().length(24).hex(),
   }),
-}), deleteALlMovies);
+}), deleteALlMovies); */
 
 module.exports = router;

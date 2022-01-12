@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const auth = require('../middlewares/auth');
-const { getUsers } = require('../controllers/users');
+/* const auth = require('../middlewares/auth'); */
+/* const { getUsers } = require('../controllers/users'); */
 const { getMyProfile } = require('../controllers/users');
 const { updateMyProfile } = require('../controllers/users');
 
-router.get('/me', auth, getMyProfile);
-router.patch('/me', auth, celebrate({
+router.get('/me', getMyProfile);
+router.patch('/me', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     email: Joi.string().email().required(),
@@ -14,6 +14,6 @@ router.patch('/me', auth, celebrate({
 }), updateMyProfile);
 
 // удалить
-router.get('/', getUsers);
+/* router.get('/', getUsers); */
 
 module.exports = router;

@@ -82,17 +82,17 @@ function loginUser(req, res, next) {
     });
 }
 
-// удалить потом
-function getUsers(req, res, next) {
+// удалить
+/* function getUsers(req, res, next) {
   User.find({})
     .then((users) => res.send({ users }))
     .catch((err) => next(err));
-}
+} */
 
 module.exports = {
   createUser,
   loginUser,
-  getUsers,
+  /* getUsers, */
   getMyProfile,
   updateMyProfile,
 };
