@@ -3,12 +3,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
+/* const randomString = require('./utils/randomString'); */
 const rateLimit = require('./middlewares/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
 const routes = require('./routes');
 
 const port = 3000;
+
+/* console.log(randomString); */
+console.log(process.env.NODE_ENV);
 
 // подключаем монго
 mongoose.connect('mongodb://localhost:27017/trainig', {
