@@ -12,7 +12,6 @@ const routes = require('./routes');
 const port = 3000;
 
 /* console.log(randomString); */
-console.log(process.env.NODE_ENV);
 
 // подключаем монго
 mongoose.connect('mongodb://localhost:27017/trainig', {
