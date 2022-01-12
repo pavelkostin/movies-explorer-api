@@ -24,9 +24,6 @@ router.use('/signin', celebrate({
 router.use('/users', auth, usersRouter);
 router.use('/movies', auth, moviesRouter);
 
-router.use('*', (req, res, next) => {
-  const error = new NotFoundError('Ресурс не найден.');
-  next(error);
-});
+router.use('*', (req, res, next) => next(new NotFoundError('Ресурс не найден.')));
 
 module.exports = router;
