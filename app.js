@@ -21,6 +21,7 @@ mongoose.connect('mongodb://localhost:27017/trainig', {
 });
 
 const app = express();
+app.use(cors(allowedCors));
 
 // rate limiter
 app.use(rateLimit);
@@ -30,7 +31,6 @@ app.use(helmet());
 
 // подключаем парсер данных
 app.use(express.json());
-app.use(cors(allowedCors));
 app.use(express.urlencoded({ extended: true }));
 
 // request Logger
