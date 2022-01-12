@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/trainig', {
 const app = express();
 
 // rate limiter
-app.use(rateLimit());
+app.use(rateLimit);
 
 // helmet
 app.use(helmet());
