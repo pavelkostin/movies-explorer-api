@@ -37,8 +37,9 @@ function updateMyProfile(req, res, next) {
     })
     .then((user) => res.send({ email: user.email, name: user.name }))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные.'));
+      if (err.name === 'MongoServerError' && err.code === 11000) {
+        /* next(new BadRequestError('Переданы некорректные данные.')); */
+        next(new ConflictError('Пользователь с такой почтой уже существует.'));
       } else {
         next(err);
       }
@@ -83,8 +84,7 @@ function loginUser(req, res, next) {
       res.send({ token });
     })
     .catch((err) => {
-      res.send({ error: err.message });
-      /* next(err); */
+      next(err);
     });
 }
 
