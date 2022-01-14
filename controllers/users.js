@@ -83,7 +83,8 @@ function loginUser(req, res, next) {
       res.send({ token });
     })
     .catch((err) => {
-      next(err);
+      res.send({ error: err.message });
+      /* next(err); */
     });
 }
 
