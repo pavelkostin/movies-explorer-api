@@ -12,6 +12,7 @@ router.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+
 router.use('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
@@ -29,6 +30,6 @@ router.use('/signin', celebrate({
 router.use('/users', auth, usersRouter);
 router.use('/movies', auth, moviesRouter);
 
-router.use('*', (req, res, next) => next(new NotFoundError('Ресурс не найден.')));
+router.use('*', auth, (req, res, next) => next(new NotFoundError('Ресурс не найден.')));
 
 module.exports = router;
