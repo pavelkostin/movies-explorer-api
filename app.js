@@ -27,6 +27,9 @@ mongoose.connect(NODE_ENV === 'production' ? DATABASE_URL : 'mongodb://localhost
 const app = express();
 app.use(cors(allowedCors));
 
+// request Logger
+app.use(requestLogger);
+
 // rate limiter
 app.use(rateLimit);
 
@@ -36,9 +39,6 @@ app.use(helmet());
 // подключаем парсер данных
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// request Logger
-app.use(requestLogger);
 
 // подключаем роуты
 app.use(routes);
