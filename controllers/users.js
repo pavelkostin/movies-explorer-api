@@ -13,13 +13,7 @@ function getMyProfile(req, res, next) {
       throw new NotFoundError('Пользователь не найден.');
     })
     .then((user) => res.send({ email: user.email, name: user.name }))
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequestError('Переданы некорректные данные.'));
-      } else {
-        next(err);
-      }
-    });
+    .catch((error) => { next(error); });
 }
 
 function updateMyProfile(req, res, next) {
