@@ -53,17 +53,14 @@ function getMovies(req, res, next) {
 function deleteMovie(req, res, next) {
   Movie.findById(req.params.movieId)
     .orFail(() => {
-      throw new NotFoundError(`Карточка по ID: ${req.params.movieId} не найдена.`);
+      throw new NotFoundError(`Фильм по ID: ${req.params.movieId} не найден.`);
     })
     .then((movie) => {
       if (movie.owner.toString() === req.user._id.toString()) {
-        movie.remove();
-        res
-          .status(200)
-          .send(movie);
-      } else {
-        next(new ForbiddenError(`Фильм c _id: ${req.params.movieId} создал другой пользователь. Нельзя удалять чужие фильмы.`));
+        return movie.remove()
+          .then(() => res.status(200).send(movie));
       }
+      throw new ForbiddenError(`Фильм c _id: ${req.params.movieId} создал другой пользователь. Нельзя удалять чужие фильмы.`);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
