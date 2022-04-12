@@ -32,7 +32,7 @@ function postMovie(req, res, next) {
     nameEN,
     owner,
   })
-    .then((movie) => res.status(200).send({ data: movie }))
+    .then((movie) => res.status(200).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные.'));
@@ -44,7 +44,7 @@ function postMovie(req, res, next) {
 
 function getMovies(req, res, next) {
   return Movie.find({})
-    .then((movies) => res.status(200).send({ movies }))
+    .then((movies) => res.status(200).send(movies))
     .catch((err) => {
       next(err);
     });

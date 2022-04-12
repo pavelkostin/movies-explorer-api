@@ -11,15 +11,11 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
 const routes = require('./routes');
 
-const port = 3000;
+const port = 3002;
 
 const { NODE_ENV, DATABASE_URL } = process.env;
 
 // подключаем монго
-/* mongoose.connect('mongodb://localhost:27017/moviesdb', {
-  useNewUrlParser: true,
-}); */
-
 mongoose.connect(NODE_ENV === 'production' ? DATABASE_URL : 'mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
 });

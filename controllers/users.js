@@ -12,7 +12,7 @@ function getMyProfile(req, res, next) {
     .orFail(() => {
       throw new NotFoundError('Пользователь не найден.');
     })
-    .then((user) => res.send({ email: user.email, name: user.name }))
+    .then((user) => res.send({ id: req.user._id, email: user.email, name: user.name }))
     .catch((error) => { next(error); });
 }
 
@@ -29,7 +29,7 @@ function updateMyProfile(req, res, next) {
     .orFail(() => {
       throw new NotFoundError('Пользователь не найден.');
     })
-    .then((user) => res.send({ email: user.email, name: user.name }))
+    .then((user) => res.send({ id: req.user._id, email: user.email, name: user.name }))
     .catch((err) => {
       if (err.name === 'MongoServerError' && err.code === 11000) {
         /* next(new BadRequestError('Переданы некорректные данные.')); */
@@ -75,6 +75,7 @@ function loginUser(req, res, next) {
         NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
         { expiresIn: '7d' },
       );
+
       res.send({ token });
     })
     .catch((err) => {
