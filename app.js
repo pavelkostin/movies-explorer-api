@@ -11,7 +11,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
 const routes = require('./routes');
 
-const port = 3003;
+const port = 3002;
 
 const { NODE_ENV, DATABASE_URL } = process.env;
 
