@@ -1,7 +1,7 @@
 const allowedCors = {
   origin: [
-    'http://kpa-movie-explorer-front.nomoredomains.work/',
-    'https://kpa-movie-explorer-front.nomoredomains.work/',
+    'http://kpa-movie-explorer-front.nomoredomains.work',
+    'https://kpa-movie-explorer-front.nomoredomains.work',
     /* 'https://api.movie-kpa.nomoredomains.rocks/', */
     'https://localhost:3000',
     'http://localhost:3000',
